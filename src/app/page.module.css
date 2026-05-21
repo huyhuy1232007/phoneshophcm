@@ -1,0 +1,335 @@
+/* =========================================
+   CLEAN & PREMIUM APPLE E-COMMERCE THEME
+   (Trang Chủ - Home 4-Cols)
+   ========================================= */
+
+.container {
+  --apple-bg: #ffffff;
+  --apple-text: #1d1d1f;
+  --apple-text-muted: #86868b;
+  --apple-blue: #0071e3;
+  --apple-blue-hover: #0077ed;
+  --apple-glass-border: rgba(0, 0, 0, 0.05);
+  --shadow-base: 0 4px 20px rgba(0, 0, 0, 0.06); 
+
+  width: 100%;
+  max-width: 1700px;
+  margin: 0 auto;
+  min-height: 100vh;
+  padding: 30px 50px 0px; 
+  background-color: var(--apple-bg);
+  color: var(--apple-text);
+
+  /* THAY ĐỔI FONT CHỮ SANG PLUS JAKARTA SANS */
+  font-family: var(--font-jakarta), sans-serif;
+  
+  letter-spacing: -0.015em;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* --- 1. HERO SECTION (TRANG CHỦ) --- */
+.heroSection {
+  background: #fbfbfd;
+  border-radius: 32px;
+  height: 520px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0 80px;
+  margin-bottom: 50px;
+  overflow: hidden;
+  border: 1px solid rgba(0,0,0,0.02);
+}
+
+.heroTag {
+  color: #bf4800;
+  font-weight: 600;
+  font-size: 14px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.heroTitle {
+  font-size: 56px;
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 15px;
+}
+
+.heroSubtitle {
+  font-size: 22px;
+  color: var(--apple-text-muted);
+  margin-bottom: 35px;
+  max-width: 450px;
+}
+
+.heroBtnPrimary {
+  background: var(--apple-blue);
+  color: white;
+  border: none;
+  padding: 14px 28px;
+  border-radius: 25px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.heroBtnSecondary {
+  background: transparent;
+  color: var(--apple-blue);
+  border: none;
+  font-size: 17px;
+  font-weight: 600; /* Tăng độ đậm chút cho cân xứng với nút Mua ngay */
+  cursor: pointer;
+  margin-left: 15px;
+  
+  /* THÊM ĐỆM VÀ BO GÓC ĐỂ LÚC HIỆN NỀN KHÔNG BỊ TRỌC */
+  padding: 10px 18px; 
+  border-radius: 25px; 
+  
+  /* BẮT BUỘC PHẢI CÓ TRANSITION Ở ĐÂY ĐỂ KHI RÚT CHUỘT RA VẪN MƯỢT */
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  
+  display: inline-flex;
+  align-items: center;
+}
+
+/* --- 2. MAIN LAYOUT & GRID (4 CỘT) --- */
+.item1 {
+  display: flex;
+  gap: 40px; 
+  padding-bottom: 80px; 
+}
+
+.mainContent {
+  flex: 4;
+}
+
+.sectionHeading {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 30px;
+}
+
+.productGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); 
+  gap: 25px; 
+}
+
+/* --- 3. PRODUCT CARD --- */
+.product {
+  background: #ffffff;
+  border-radius: 28px; 
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-base); 
+  border: 1px solid rgba(0,0,0,0.04);
+  position: relative;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), 
+              box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.product:hover {
+  transform: scale(1.03) translateY(-8px); 
+  box-shadow: var(--shadow-hover-blue); 
+}
+
+.badge {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  background: rgba(0,0,0,0.7);
+  color: white;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  z-index: 2;
+}
+
+.productImage {
+  width: 100%;
+  height: 260px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+}
+
+.productImage img {
+  max-width: 90%;
+  max-height: 90%;
+  width: auto;       
+  height: auto;      
+  object-fit: contain; 
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.product:hover .productImage img {
+  transform: scale(1.08); 
+  filter: drop-shadow(0 15px 30px rgba(0,0,0,0.15));
+}
+
+.productName {
+  font-size: 18px; 
+  font-weight: 600; 
+  padding: 12px 20px 5px; 
+}
+
+.productPrice {
+  font-size: 17px;
+  font-weight: 500; 
+  padding: 0 20px;
+}
+
+.productRemain {
+  font-size: 13px;
+  color: var(--apple-text-muted);
+  padding: 5px 20px 20px;
+}
+
+.actionButtons {
+  display: flex;
+  gap: 10px; 
+  padding: 0 20px 20px; 
+  margin-top: auto; 
+}
+
+.buyBtn, .cartBtn {
+  flex: 1; 
+  padding: 11px 5px; 
+  border-radius: 12px;
+  font-weight: 600; 
+  font-size: 13px;
+  cursor: pointer;
+  border: none;
+  transition: 0.3s;
+}
+
+.buyBtn { background: var(--apple-blue); color: white; }
+.cartBtn { background: #f5f5f7; color: var(--apple-text); }
+
+/* --- 4. SIDEBAR (HOME) --- */
+.item2 {
+  flex: 1;
+  min-width: 280px;
+  height: fit-content;
+  position: sticky;
+  top: 140px; 
+}
+
+.sidebarBox {
+  background: #fbfbfd;
+  padding: 20px;
+  border-radius: 20px;
+  margin-bottom: 15px;
+  border: 1px solid var(--apple-glass-border);
+}
+
+.sidebarBox h4 { font-size: 17px; margin-bottom: 8px; font-weight: 600; }
+.sidebarBox p { font-size: 13px; color: var(--apple-text-muted); line-height: 1.5; }
+
+/* --- 5. CATEGORY BAR --- */
+.categoryBar {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin: 40px 0;
+  padding: 10px;
+}
+
+.categoryItem {
+  background: transparent;
+  border: none;
+  font-size: 16px;
+  font-weight: 500;
+  color: #1d1d1f;
+  cursor: pointer;
+  position: relative;
+  padding: 8px 12px;
+  transition: color 0.3s ease;
+}
+
+.categoryItem::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 50%;
+  background-color: #0071e3;
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+
+.categoryItem:hover { color: #0071e3; }
+.categoryItem:hover::after { width: 80%; }
+
+/* --- 6. HIỆU ỨNG & RESPONSIVE --- */
+/* --- HIỆU ỨNG CUỘN TRANG CHUYÊN NGHIỆP (SCROLL REVEAL) --- */
+
+/* Trạng thái ban đầu: Ẩn và nằm thấp xuống 40px */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  /* Dùng đường cong bezier huyền thoại của Apple cho mượt */
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
+              opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity; /* Tối ưu phần cứng cho trình duyệt */
+}
+
+/* Trạng thái khi hiện: Bay lên vị trí cũ và hiện hình */
+.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* KỸ THUẬT STAGGERED: Sản phẩm trong hàng bay lên lần lượt */
+.product.active {
+  /* Mỗi sản phẩm trong hàng 4 cột sẽ có độ trễ tăng dần 0.1s */
+  transition-delay: calc(var(--delay) * 0.1s);
+}
+
+/* Hiệu ứng mượt hơn cho Hero và Sidebar */
+.heroSection.active { transition-delay: 0.1s; }
+.categoryBar.active { transition-delay: 0.2s; }
+.item2.active { transition-delay: 0.3s; }
+
+.heroBtnPrimary:hover, .buyBtn:hover {
+  background-color: #0077ed; 
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 113, 227, 0.3);
+}
+
+.cartBtn:hover {
+  background-color: #e8e8ed;
+  color: #0071e3;
+  transform: translateY(-2px);
+}
+
+/* Hiệu ứng hover độc quyền cho nút Tìm hiểu thêm */
+.heroBtnSecondary:hover {
+  /* Nền xanh lơ mờ 8% cực kỳ nịnh mắt thay vì xám xịt */
+  background-color: rgba(0, 113, 227, 0.08); 
+  color: var(--apple-blue-hover);
+  
+  /* Lướt êm ái sang phải 5px mời gọi thay vì nảy hàng dọc */
+  transform: translateX(5px); 
+}
+
+/* Hiệu ứng lún nhẹ êm ái khi bấm chuột xuống */
+.heroBtnSecondary:active {
+  transform: translateX(2px) scale(0.98);
+}
+
+.heroBtnPrimary:active, .buyBtn:active, .cartBtn:active {
+  transform: translateY(0);
+  filter: brightness(0.9);
+}
+
+@media (max-width: 1024px) {
+  .productGrid { grid-template-columns: repeat(2, 1fr); }
+  .heroSection { flex-direction: column; text-align: center; height: auto; padding: 40px; }
+}

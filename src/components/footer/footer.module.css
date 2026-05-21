@@ -1,0 +1,155 @@
+.footer {
+  padding: 80px 0 40px; 
+  border-top: 1px solid var(--apple-border);
+  background-color: var(--apple-bg);
+  color: var(--apple-text-muted);
+}
+
+.footerGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 50px;
+  margin-bottom: 70px;
+}
+
+.footerColumn h3 {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--apple-text);
+  margin-bottom: 24px;
+  letter-spacing: -0.01em;
+}
+
+.footerColumn ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.footerColumn ul li {
+  font-size: 14px;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.footerColumn ul li:hover {
+  color: var(--apple-text);
+}
+
+.contactList li {
+  line-height: 1.6; 
+  cursor: default !important; 
+}
+
+.contactList li:hover {
+  color: var(--apple-text-muted) !important;
+}
+
+.contactList strong {
+  color: var(--apple-text);
+  font-weight: 600;
+}
+
+.footerDesc {
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+/* --- Khối đăng ký nhận tin trong Footer --- */
+.subscribeBox {
+  display: flex;
+  gap: 10px; /* Khoảng cách giữa ô nhập và nút */
+  align-items: center;
+  width: 100%;
+}
+
+.subscribeBox input {
+  flex: 1;
+  padding: 14px 18px;
+  border-radius: 12px;
+  border: 1px solid var(--apple-border);
+  background: #f5f5f7; /* Đổi nền xám nhẹ cho chuyên nghiệp */
+  outline: none;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  
+  /* FIX LỖI MÀU CHỮ: Ép màu chữ tối để dễ nhìn */
+  color: #1d1d1f !important; 
+}
+
+/* Tùy chỉnh màu chữ gợi ý (placeholder) cho tinh tế */
+.subscribeBox input::placeholder {
+  color: #86868b;
+}
+
+.subscribeBox input:focus {
+  background: #ffffff;
+  border-color: var(--apple-blue);
+  box-shadow: 0 0 0 4px rgba(0, 113, 227, 0.1);
+}
+
+.subscribeBox button {
+  /* FIX LỖI NHẢY DÒNG: Ép chữ nằm trên 1 hàng */
+  white-space: nowrap; 
+  flex-shrink: 0; /* Không cho phép nút bị co lại */
+  
+  padding: 14px 22px;
+  border-radius: 12px;
+  background: var(--apple-text);
+  color: #ffffff;
+  border: none;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.subscribeBox button:hover {
+  background: var(--apple-blue); /* Di chuột vào đổi sang xanh Apple */
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 113, 227, 0.2);
+}
+
+.subscribeBox button:active {
+  transform: translateY(0);
+}
+
+.footerBottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 30px;
+  border-top: 1px solid var(--apple-border);
+  font-size: 13px;
+}
+
+.legalLinks {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.legalLinks span {
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.legalLinks span:not(.separator):hover {
+  color: var(--apple-text);
+  text-decoration: underline;
+}
+
+.separator {
+  color: #d2d2d7;
+  cursor: default;
+}
+
+.region {
+  font-weight: 500;
+  color: var(--apple-text);
+  cursor: pointer;
+}
