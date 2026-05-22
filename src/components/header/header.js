@@ -6,12 +6,12 @@ import Image from "next/image";
 import styles from "./header.module.css";
 
 // 1. Nhận thêm 'products' (nhớ gán mảng rỗng mặc định để không lỗi)
-export default function Header({ searchQuery, setSearchQuery, products = [] }) {
+export default function Header({ searchQuery = "", setSearchQuery = () => {}, products = [] }) {
   const [showSuggestions, setShowSuggestions] = useState(false);
   const searchRef = useRef(null);
 
   // 2. Logic lọc siêu thông minh: Ưu tiên sản phẩm "Bắt đầu bằng" chữ khóa lên top 1
-  const query = searchQuery.toLowerCase().trim();
+  const query = (searchQuery || "").toLowerCase().trim();
   
   const suggestions = products
     .filter((p) => {
@@ -101,7 +101,7 @@ export default function Header({ searchQuery, setSearchQuery, products = [] }) {
             ) : (
               // Thêm phần này để xử lý khi gõ bậy bạ không ra kết quả
               <div className={styles.noResult}>
-                Không tìm thấy kết quả cho "{searchQuery}"
+                Không tìm thấy kết quả cho {searchQuery}
               </div>
             )}
           </div>
