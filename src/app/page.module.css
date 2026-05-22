@@ -333,3 +333,113 @@
   .productGrid { grid-template-columns: repeat(2, 1fr); }
   .heroSection { flex-direction: column; text-align: center; height: auto; padding: 40px; }
 }
+
+/* Màu sắc khi nút được click chọn (cậu có thể tự đổi mã màu theo ý thích) */
+.activeBtn {
+  background-color: #0071e3 !important; /* Màu xanh Apple */
+  color: white !important;
+  border-color: #0071e3 !important;
+  box-shadow: 0 4px 15px rgba(0, 113, 227, 0.3);
+  transform: translateY(-2px);
+}
+
+/* =========================================
+   THANH PHÂN LOẠI — MINIMAL PROFESSIONAL
+   Đơn giản · Sạch · Chuyên nghiệp
+========================================= */
+
+.categoryBarWrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 50px;
+}
+
+/* THANH NỀN — Trắng sạch, đổ bóng nhẹ nhàng */
+.categoryBar {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 50px;
+  padding: 5px;
+  
+  box-shadow: 
+    0 1px 3px rgba(0, 0, 0, 0.04),
+    0 4px 12px rgba(0, 0, 0, 0.03);
+}
+
+/* NÚT BẤM — Font vừa vặn, chữ đen */
+.categoryItem {
+  position: relative;
+  z-index: 2;
+  background: transparent;
+  border: none;
+  padding: 10px 32px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', sans-serif;
+  font-size: 15px;
+  font-weight: 400; /* TĂNG TỪ 300 LÊN 400: Dày dặn hơn một xíu, dễ đọc hơn */
+  letter-spacing: 0.2px;
+  color: #444;
+  cursor: pointer;
+  border-radius: 50px;
+  white-space: nowrap;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  transition: color 0.3s ease;
+}
+
+.categoryItem:hover {
+  color: #111;
+}
+
+.categoryItem:active {
+  transform: scale(0.97);
+  transition: transform 0.1s ease;
+}
+
+/* Text active — trắng, đậm hơn để nổi trên nền đen */
+.activeText,
+.categoryItem.active {
+  color: #ffffff !important;
+  font-weight: 500; /* TĂNG TỪ 400 LÊN 500: Đảm bảo chữ trắng trên nền đen không bị chìm */
+}
+
+/* PILL TRƯỢT — Đen tuyền, gọn gàng */
+.activePill {
+  position: absolute;
+  z-index: 1;
+  background: #1d1d1f;
+  border-radius: 50px;
+  pointer-events: none;
+  
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  
+  transition: 
+    left 0.4s cubic-bezier(0.25, 1, 0.5, 1),
+    top 0.4s cubic-bezier(0.25, 1, 0.5, 1),
+    width 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+    height 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 600px) {
+  .categoryItem {
+    padding: 9px 20px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 380px) {
+  .categoryItem {
+    padding: 8px 16px;
+    font-size: 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .activePill,
+  .categoryItem {
+    transition-duration: 0.01ms !important;
+  }
+}

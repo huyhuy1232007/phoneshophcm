@@ -1,155 +1,324 @@
 .header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 25px; 
-    margin-bottom: 70px;
-    position: sticky;
-    top: 20px;
-    z-index: 100;
-  }
-  
-  .searchBox {
-    display: flex;
-    align-items: center;
-    background: var(--apple-glass);
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
-    border: 1px solid var(--apple-glass-border);
-    padding: 16px 28px;
-    border-radius: 40px;
-    width: 420px; 
-    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); 
-    box-shadow: 0 4px 20px rgba(0,0,0,0.03);
-  }
-  
-  .searchBox:hover, .searchBox:focus-within {
-    width: 600px; 
-    background: #ffffff;
-    box-shadow: var(--shadow-hover-blue);
-    border-color: rgba(0, 113, 227, 0.2);
-    transform: translateY(-2px);
-  }
-  
-  .searchIcon {
-    width: 20px;
-    height: 20px;
-    border: 2px solid var(--apple-text-muted);
-    border-radius: 50%;
-    position: relative;
-    transition: 0.3s;
-  }
-  
-  .searchIcon::after {
-    content: "";
-    position: absolute;
-    width: 2px;
-    height: 7px;
-    background: var(--apple-text-muted);
-    bottom: -4px;
-    right: -3px;
-    transform: rotate(-45deg);
-    border-radius: 2px;
-    transition: 0.3s;
-  }
-  
-  .searchBox:focus-within .searchIcon, 
-  .searchBox:focus-within .searchIcon::after {
-    border-color: var(--apple-blue);
-    background: var(--apple-blue);
-  }
-  
-  .searchBox input {
-    border: none;
-    outline: none;
-    background: transparent;
-    width: 100%;
-    font-size: 17px; 
-    padding-left: 15px;
-    color: var(--apple-text);
-    font-weight: 400; 
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 25px; 
+  margin-bottom: 70px;
+  position: sticky;
+  top: 20px;
+  z-index: 100;
+}
 
-  
-  .nav ul {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 60px; 
-    list-style: none;
-    padding: 22px 60px; 
-    border-radius: 40px;
-    background: var(--apple-glass);
-    backdrop-filter: blur(24px);
-    border: 1px solid var(--apple-glass-border);
-    box-shadow: 0 4px 20px rgba(0,0,0,0.03);
-    transition: all 0.4s ease;
-  }
-  
-  .nav li {
-    font-size: 17px; 
-    font-weight: 500; 
-    color: var(--apple-text);
-    opacity: 0.8;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    position: relative;
-  }
-  
-  .nav li:hover {
-    opacity: 1;
-    color: var(--apple-blue);
-  }
-  
-  .nav li::after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 2px;
-    bottom: -4px;
-    left: 50%;
-    background-color: var(--apple-blue);
-    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-    transform: translateX(-50%);
-    border-radius: 2px;
-  }
-  
-  .nav li:hover::after {
-    width: 100%;
-  }
+/* KHUNG CHỨA LOGO */
+.logoContainer {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15px;
+  margin-top: -15px;
+  align-items: center;
+  margin-bottom: -10px; /* Ép nhẹ xuống để searchBox nhìn liền mạch hơn */
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
 
+.logoContainer:hover {
+  transform: scale(1.02); /* Hiệu ứng nảy nhẹ khi di chuột vào Logo */
+}
 
-  @media (max-width: 1500px) {
-    .container { max-width: 1400px; padding: 30px 40px 0; }
-    .productImage { height: 300px; padding: 5px; } /* Thu ảnh lại trên màn nhỏ, padding giữ 5px */
-    .productName { font-size: 19px; }
-  }
+/* =========================================
+   THANH TÌM KIẾM THÔNG MINH (LIVE SEARCH)
+========================================= */
+
+/* Bao bọc toàn bộ thanh search + bảng dropdown */
+.searchWrapper {
+  position: relative;
+  width: 420px;
+  transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 200; /* Nổi lên trên cùng */
+}
+
+/* Khi click vào thanh search, khung bự ra 600px */
+.searchWrapper:focus-within {
+  width: 600px;
+}
+
+/* Khung nhập liệu */
+.searchBox {
+  display: flex;
+  align-items: center;
+  background: var(--apple-glass, rgba(255,255,255,0.8));
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(0,0,0,0.08);
+  padding: 16px 28px;
+  border-radius: 40px;
+  width: 100%;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+  transition: all 0.3s ease;
+}
+
+/* Đổi màu khi có chuột hoặc đang gõ chữ */
+.searchWrapper:focus-within .searchBox,
+.searchBox:hover {
+  background: #ffffff;
+  box-shadow: 0 8px 30px rgba(0, 113, 227, 0.12);
+  border-color: rgba(0, 113, 227, 0.3);
+}
+
+/* Kính lúp (CSS thuần) */
+.searchIcon {
+  width: 20px; height: 20px;
+  border: 2px solid #888;
+  border-radius: 50%;
+  position: relative;
+  transition: 0.3s;
+  flex-shrink: 0;
+}
+.searchIcon::after {
+  content: ""; position: absolute;
+  width: 2px; height: 7px; background: #888;
+  bottom: -4px; right: -3px;
+  transform: rotate(-45deg); border-radius: 2px;
+  transition: 0.3s;
+}
+
+/* Kính lúp đổi màu xanh Apple khi gõ */
+.searchWrapper:focus-within .searchIcon, 
+.searchWrapper:focus-within .searchIcon::after {
+  border-color: #0071e3; background: #0071e3;
+}
+
+/* Ô input */
+.searchBox input {
+  border: none; outline: none; background: transparent;
+  width: 100%; font-size: 16px; padding-left: 15px;
+  color: #111; font-weight: 400;
+}
+
+/* =========================================
+   BẢNG GỢI Ý (DROP-DOWN MENU)
+========================================= */
+.suggestionsBox {
+  position: absolute;
+  top: calc(100% + 10px); /* Cách thanh search 10px */
+  left: 0;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 20px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  animation: fadeInDown 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.suggestionItem {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 12px 20px;
+  gap: 15px;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(0,0,0,0.03);
   
-  @media (max-width: 1400px) {
-    .mainContent { grid-template-columns: repeat(3, 1fr); }
-    .productImage { height: 340px; padding: 5px;} /* Phục hồi lại ảnh vì ít cột đi, padding giữ 5px */
-  }
+  /* HIỆU ỨNG THÁC NƯỚC APPLE (Rơi từ trên xuống siêu mượt) */
+  opacity: 0;
+  transform: translateY(-8px); /* Cho nó rớt từ trên xuống một chút xíu thôi */
   
-  @media (max-width: 1100px) {
-    .mainContent { grid-template-columns: repeat(2, 1fr); }
-    .footerGrid { grid-template-columns: repeat(2, 1fr); gap: 50px 30px; } 
-  }
+  /* Nới thời gian lên 0.6s, dùng đường cong hãm phanh cực êm */
+  animation: dropDownSmooth 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
   
-  @media (max-width: 900px) {
-    .item1 { flex-direction: column; }
-    .item2 { width: 100%; position: static; }
-    .header { position: static; } 
-    .reveal { transition-duration: 0.6s; } 
-    .footerBottom { flex-direction: column; gap: 15px; text-align: center; }
-  }
+  /* Nới khoảng cách thời gian giữa các món rớt xuống (từ 0.05s lên 0.08s) */
+  animation-delay: calc(var(--i) * 0.08s); 
   
-  @media (max-width: 600px) {
-    .mainContent { grid-template-columns: 1fr; }
-    .searchBox { width: 100%; }
-    .searchBox:focus-within { width: 100%; transform: none; }
-    .nav ul { gap: 15px; padding: 14px 20px; }
-    .nav li { font-size: 14px; }
-    .actionButtons { flex-direction: column; } 
-    .container { padding: 20px 20px 0; }
-    .footerGrid { grid-template-columns: 1fr; gap: 40px; } 
-  }
+  /* Mượt mà hóa padding và background khi hover */
+  transition: background 0.4s ease, padding-left 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.2s ease;
+  overflow: hidden;
+}
+
+@keyframes dropDownSmooth {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.suggestionItem:last-child {
+  border-bottom: none;
+}
+
+/* Vạch kẻ xanh Apple bên trái khi Hover - Mỏng và thanh lịch hơn */
+.suggestionItem::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%; /* Canh giữa vạch xanh */
+  width: 3px;
+  height: 50%; /* Không kéo full 100% dòng, chỉ kéo 50% nhìn sẽ sang hơn */
+  background: #0071e3;
+  
+  /* Ẩn vạch đi và thu nhỏ lại */
+  transform: translateY(-50%) scaleY(0); 
+  opacity: 0;
+  transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.4s ease;
+  border-radius: 0 4px 4px 0;
+}
+
+/* HIỆU ỨNG KHI ĐƯA CHUỘT VÀO (HOVER) */
+.suggestionItem:hover {
+  background: rgba(0, 113, 227, 0.02); /* Đổi màu nền cực nhẹ, không gắt */
+  padding-left: 26px; /* Trượt nội dung vào rất khẽ */
+}
+
+.suggestionItem:hover::before {
+  transform: translateY(-50%) scaleY(1); /* Vạch xanh từ từ mọc ra */
+  opacity: 1;
+}
+
+/* Kính lúp / Zoom ảnh siêu chậm, bỏ xoay */
+.suggestionImage img {
+  /* Kéo dài thời gian zoom lên 0.6s để tạo cảm giác trôi lững lờ */
+  transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.suggestionItem:hover .suggestionImage img {
+  transform: scale(1.08); /* Chỉ phóng to đúng 8%, sang trọng và tinh tế */
+}
+
+/* Hiệu ứng khi bấm chuột (Click) */
+.suggestionItem:active {
+  background: rgba(0, 113, 227, 0.05);
+  transform: scale(0.99); /* Chỉ lõm đúng 1% để có cảm giác chạm, không bị giật khung hình */
+}
+
+/* Giao diện khi không tìm thấy kết quả */
+.noResult {
+  padding: 30px 20px;
+  text-align: center;
+  color: #888;
+  font-size: 14px;
+  animation: dropDownSmooth 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+.suggestionItem:last-child {
+  border-bottom: none;
+}
+
+.suggestionItem:hover {
+  background: rgba(0, 113, 227, 0.05); /* Sáng xanh nhẹ khi lướt qua */
+}
+
+/* Định dạng ảnh và chữ trong gợi ý */
+.suggestionImage {
+  background: #f5f5f7;
+  border-radius: 10px;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.suggestionInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.suggestionName {
+  font-size: 15px;
+  font-weight: 500;
+  color: #1d1d1f;
+}
+
+.suggestionPrice {
+  font-size: 13px;
+  font-weight: 400;
+  color: #0071e3;
+}
+
+.nav ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 60px; 
+  list-style: none;
+  padding: 22px 60px; 
+  border-radius: 40px;
+  background: var(--apple-glass);
+  backdrop-filter: blur(24px);
+  border: 1px solid var(--apple-glass-border);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+  transition: all 0.4s ease;
+}
+
+.nav li {
+  font-size: 17px; 
+  font-weight: 500; 
+  color: var(--apple-text);
+  opacity: 0.8;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.nav li:hover {
+  opacity: 1;
+  color: var(--apple-blue);
+}
+
+.nav li::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -4px;
+  left: 50%;
+  background-color: var(--apple-blue);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateX(-50%);
+  border-radius: 2px;
+}
+
+.nav li:hover::after {
+  width: 100%;
+}
+
+@media (max-width: 1500px) {
+  .container { max-width: 1400px; padding: 30px 40px 0; }
+  .productImage { height: 300px; padding: 5px; } 
+  .productName { font-size: 19px; }
+}
+
+@media (max-width: 1400px) {
+  .mainContent { grid-template-columns: repeat(3, 1fr); }
+  .productImage { height: 340px; padding: 5px;} 
+}
+
+@media (max-width: 1100px) {
+  .mainContent { grid-template-columns: repeat(2, 1fr); }
+  .footerGrid { grid-template-columns: repeat(2, 1fr); gap: 50px 30px; } 
+}
+
+@media (max-width: 900px) {
+  .item1 { flex-direction: column; }
+  .item2 { width: 100%; position: static; }
+  .header { position: static; } 
+  .reveal { transition-duration: 0.6s; } 
+  .footerBottom { flex-direction: column; gap: 15px; text-align: center; }
+}
+
+@media (max-width: 600px) {
+  .mainContent { grid-template-columns: 1fr; }
+  .searchBox { width: 100%; }
+  .searchBox:focus-within { width: 100%; transform: none; }
+  .nav ul { gap: 15px; padding: 14px 20px; }
+  .nav li { font-size: 14px; }
+  .actionButtons { flex-direction: column; } 
+  .container { padding: 20px 20px 0; }
+  .footerGrid { grid-template-columns: 1fr; gap: 40px; } 
+}

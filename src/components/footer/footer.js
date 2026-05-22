@@ -35,7 +35,7 @@ export default function Footer() {
             <ul className={styles.contactList}>
               <li><strong>CS1:</strong> 592 Nguyễn Ảnh Thủ, P. Trung Mỹ Tây, Quận 12, TP.HCM</li>
               <li><strong>CS2:</strong> 36 Nguyễn Văn Vân, P. Hiệp Thành, Quận 12, TP.HCM</li>
-              <li><strong>Điện thoại:</strong> (028) 37.189.289</li>
+              <li><strong>Điện thoại:</strong> (058) 979.46.53</li>
               <li><strong>Email:</strong> tuyensinh@dttec.edu.vn</li>
             </ul>
           </div>
